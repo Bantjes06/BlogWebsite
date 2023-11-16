@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+<div class="bg-body-tertiary d-flex ">
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+          </svg>
+      <h1>Create Post</h1>
+      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="d-flex flex-column justify-content-center">
+      <div class="col-md-7 col-lg-8">
+        <form action="/submit" method="POST">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="postTitle" class="form-label"><h2>Post Title</h2></label>
+              <input type="text" class="form-control" maxlength="40" name="pTitle" id="firstName" placeholder="Title..."  required="">
+            </div>
+
+            <div class="col-12">
+                <label for="floatingTextarea"><h2>Post Body</h2></label>
+                <textarea class="form-control" name="pBody" placeholder="Type here..." id="expandingInput"></textarea>
+            </div>
+          </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-dark btn-lg" type="submit">Upload Post</button>
+        </form>
+      </div>
+    </div>
+    </main>
+</div>
+<%- include("partials/footer.ejs") %>

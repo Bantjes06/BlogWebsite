@@ -1,0 +1,52 @@
+<%- include("partials/header.ejs") %>
+<div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis">Welcome to BlogWorld</h1>
+        <p class="lead">BlogWorld is a place for you to write your thoughts and provide meaningful insights. Go on, write that blog post!</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+          <a href="/create"><button type="button" class="btn btn-dark btn-lg px-4 me-md-2 fw-bold">Create Blog Post</button></a>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+          <img class="rounded-lg-3" src="/assets/bg-img.png" alt="serene background" width="720">
+      </div>
+    </div>
+  </div>
+
+  <h1 class="text-decoration-underline mb-5 text-center">Blog Posts</h1>
+<% if (entries.length > 0) { %>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <% entries.forEach(function(entry, index) { %>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div>
+                            <h3 class="text-center mt-4 reduce-text"><%= entry.entryTitle %></h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text reduce-text"><%= entry.entryBody %></p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View Post</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                                <form action="/delete/<%= index %>" method="post">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+<% } else { %>
+    <h1 class="mt-5 mb-5 text-center">There are currently no posts. Please create a post.</h1>
+<% } %>
+
+      
+  <%- include('partials/footer.ejs') %>
