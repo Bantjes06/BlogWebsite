@@ -48,6 +48,28 @@ app.post('/delete/:id', (req, res) => {
     res.redirect('/');
 });
 
+app.get("/edit/:id", (req, res) => {
+    const id = req.params.id;
+    if (id >= 0 && id < entries.length) {
+        const post = entries[id];
+        res.render("edit_post.ejs", { post: post, postIndex: id });
+    } else {
+        res.redirect('/');
+    }
+});
+
+app.post("/update/:id", (req, res) => {
+    const id = req.params.id;
+    if (id >= 0 && id < entries.length) {
+        entries[id].entryTitle = req.body.pTitle;
+        entries[id].entryBody = req.body.pBody;
+        res.redirect('/');
+    } else {
+        res.redirect('/');
+    }
+});
+
+
 
 console.log(entries);
 
