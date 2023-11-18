@@ -9,9 +9,10 @@ const port = 3000;
 
 var entries = [];
 class Entry {
-    constructor(entryTitle, entryBody){
+    constructor(entryTitle, entryBody, entryDate){
     this.entryTitle = entryTitle,
-    this.entryBody = entryBody
+    this.entryBody = entryBody,
+    this.entryDate = entryDate
     };
 }
 
@@ -31,13 +32,18 @@ app.get("/create", (req, res) => {
 })
 
 app.post("/submit", (req, res) => {
+    let currentDate = new Date();
+    let year = currentDate.getFullYear();
+    let month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    let day = String(currentDate.getDate()).padStart(2, '0');
+    let formattedDate = `${year}-${month}-${day}`;
+
     var entryTitle = req.body["pTitle"];
     var entryBody = req.body["pBody"];
-    const newEntry = new Entry(entryTitle, entryBody);
+    var entryDate = formattedDate;
+    const newEntry = new Entry(entryTitle, entryBody, entryDate);
     entries.push(newEntry);
-    console.log(entries);
     res.redirect("/");
-    console.log(entries);
 })
 
 app.post('/delete/:id', (req, res) => {
@@ -53,6 +59,16 @@ app.get("/edit/:id", (req, res) => {
     if (id >= 0 && id < entries.length) {
         const post = entries[id];
         res.render("edit_post.ejs", { post: post, postIndex: id });
+    } else {
+        res.redirect('/');
+    }
+});
+
+app.get("/view/:id", (req, res) => {
+    const id = req.params.id;
+    if (id >= 0 && id < entries.length) {
+        const post = entries[id];
+        res.render("view_post.ejs", { post: post, postIndex: id });
     } else {
         res.redirect('/');
     }

@@ -1,8 +1,15 @@
 .reduce-text {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Number of lines you want to display */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 400px;
+   
+}
+
+.pre-wrap {
+    white-space: pre-wrap;   /* Allow text to wrap */
+    word-wrap: break-word;   /* Break long words */
+    overflow-wrap: break-word; /* Standard syntax for word-wrap */
 }
